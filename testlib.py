@@ -1006,7 +1006,7 @@ class TestCase(unittest.TestCase):
         super(TestCase, self).__init__(methodName)
         # internal API changed in python2.5
         if sys.version_info >= (2, 5):
-            self.__exc_info = self._exc_info
+            self.__exc_info = sys.exc_info
             self.__testMethodName = self._testMethodName
         else:
             # let's give easier access to _testMethodName to every subclasses
@@ -1261,27 +1261,30 @@ succeeded test into", osp.join(os.getcwd(),FILE_RESTART)
         """assert <object> are not in <set>"""
         self.assert_(object not in set, "%s in %s" % (object, set))
 
-    def assertDictEquals(self, dict1, dict2):
-        """compares two dicts
+    #Cyrille (29/8/2019): commented because the assert equal methods now require
+    #an optional msg parameter
 
-        If the two dict differ, the first difference is shown in the error
-        message
-        """
-        dict1 = dict(dict1)
-        msgs = []
-        for key, value in dict2.items():
-            try:
-                if dict1[key] != value:
-                    msgs.append('%r != %r for key %r' % (dict1[key], value,
-                        key))
-                del dict1[key]
-            except KeyError:
-                msgs.append('missing %r key' % key)
-        if dict1:
-            msgs.append('dict2 is lacking %r' % dict1)
-        if msgs:
-            self.fail('\n'.join(msgs))
-    assertDictEqual = assertDictEquals
+    # def assertDictEquals(self, dict1, dict2):
+    #     """compares two dicts
+
+    #     If the two dict differ, the first difference is shown in the error
+    #     message
+    #     """
+    #     dict1 = dict(dict1)
+    #     msgs = []
+    #     for key, value in dict2.items():
+    #         try:
+    #             if dict1[key] != value:
+    #                 msgs.append('%r != %r for key %r' % (dict1[key], value,
+    #                     key))
+    #             del dict1[key]
+    #         except KeyError:
+    #             msgs.append('missing %r key' % key)
+    #     if dict1:
+    #         msgs.append('dict2 is lacking %r' % dict1)
+    #     if msgs:
+    #         self.fail('\n'.join(msgs))
+    # assertDictEqual = assertDictEquals
 
 
 

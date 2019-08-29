@@ -98,15 +98,15 @@ class TestlibTC(TestCase):
         while(self._dirs):
             shutil.rmtree(self._dirs.pop(), ignore_errors=True)
 
-    def test_dict_equals(self):
-        """tests TestCase.assertDictEquals"""
-        d1 = {'a' : 1, 'b' : 2}
-        d2 = {'a' : 1, 'b' : 3}
-        d3 = dict(d1)
-        self.assertRaises(AssertionError, self.tc.assertDictEquals, d1, d2)
-        self.tc.assertDictEquals(d1, d3)
-        self.tc.assertDictEquals(d3, d1)
-        self.tc.assertDictEquals(d1, d1)
+    # def test_dict_equals(self):
+    #     """tests TestCase.assertDictEquals"""
+    #     d1 = {'a' : 1, 'b' : 2}
+    #     d2 = {'a' : 1, 'b' : 3}
+    #     d3 = dict(d1)
+    #     self.assertRaises(AssertionError, self.tc.assertDictEquals, d1, d2)
+    #     self.tc.assertDictEquals(d1, d3)
+    #     self.tc.assertDictEquals(d3, d1)
+    #     self.tc.assertDictEquals(d1, d1)
 
     def test_list_equals(self):
         """tests TestCase.assertListEquals"""
